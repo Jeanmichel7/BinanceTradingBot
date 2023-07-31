@@ -15,9 +15,13 @@ import { Server, Socket } from 'socket.io';
 export class BinanceGateway {
   @WebSocketServer() server: Server;
 
-  async handleConnection(@ConnectedSocket() client: Socket) {}
+  async handleConnection(@ConnectedSocket() client: Socket) {
+    console.log('client connected', client.id);
+  }
 
-  async handleDisconnect(@ConnectedSocket() client: Socket) {}
+  async handleDisconnect(@ConnectedSocket() client: Socket) {
+    console.log('client disconnected', client.id);
+  }
 
   @SubscribeMessage('btcPriceUpdate')
   handleEvent(@MessageBody() data: string): string {
